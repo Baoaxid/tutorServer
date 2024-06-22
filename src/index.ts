@@ -4,7 +4,7 @@ import usersRouter from './routes/users.routers'
 import databaseRouter from './routes/database.routers'
 const app = express()
 app.use(express.json())
-const port = 5173
+const port = 3000
 
 app.get('/', (req, res) => {
   res.send('hello world')
