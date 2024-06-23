@@ -39,11 +39,32 @@ class DatabaseService {
     try {
       const request = this.pool.request()
       const result = await request.query(`SELECT * FROM ${process.env.DB_USERS_COLLECTION}`)
-      log(result.recordset)
       return result.recordset
     } catch (error) {
       console.log('Error fetching users:', error)
       throw error
+    }
+  }
+
+  async findUser(email: string, password: string) {
+    try {
+      const request = this.pool.request()
+      request.input('email', sql.VarChar, email)
+      request.input('password', sql.VarChar, password)
+
+      const result = await request.query<User>(
+        `SELECT * FROM ${process.env.DB_USERS_COLLECTION} 
+         WHERE email = @email AND passwordHash = @password`
+      )
+
+      if (result.recordset.length > 0) {
+        return result.recordset[0]
+      } else {
+        return null
+      }
+    } catch (error) {
+      console.log('Error finding user:', error)
+      throw new Error('Cannot find user: ' + error)
     }
   }
 
