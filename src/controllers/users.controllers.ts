@@ -12,18 +12,6 @@ export const loginController = async (req: Request, res: Response) => {
     return res.json({
       message: 'login success',
       data: loggedUser
-      // user: {
-      //   id: loggedUser.UserID,
-      //   email: loggedUser.email,
-      //   role: 'SA',
-      //   avatar: loggedUser.avatar,
-      //   username: 'test username',
-      //   name: loggedUser.fullName,
-      //   phone: loggedUser.phone,
-      //   school: 'test school',
-      //   dob: loggedUser.dateOfBirth,
-      //   grade: '12'
-      // }
     })
   } else {
     return res.status(400).json({
