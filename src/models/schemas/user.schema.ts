@@ -8,11 +8,10 @@ interface UserType {
   password: string
   avatar?: string // optional
   date_of_birth: Date
-  role: number
+  role: string
 
   phone?: string // optional
-  grade: string
-  school: string // optional
+  address: string // optional
 }
 
 export default class User {
@@ -23,11 +22,10 @@ export default class User {
   password: string
   avatar?: string // optional
   date_of_birth: Date
-  role: number
+  role: string
 
   phone?: string // optional
-  grade: string
-  school: string // optional
+  address: string // optional
   constructor(user: UserType) {
     const date = new Date() //tạo này cho ngày created_at updated_at bằng nhau
     this._id = user._id // tự tạo id
@@ -37,10 +35,9 @@ export default class User {
     this.password = user.password
     this.avatar = user.avatar || ''
     this.date_of_birth = user.date_of_birth || new Date(now())
-    this.role = user.role || 2
+    this.role = user.role || 'Student'
 
     this.phone = user.phone || ''
-    this.grade = user.grade || ''
-    this.school = user.school || ''
+    this.address = user.address || ''
   }
 }

@@ -3,19 +3,21 @@ import { NextFunction, Request, Response } from 'express'
 import databaseService from '~/services/database.services'
 import { ParamsDictionary } from 'express-serve-static-core'
 import { RegisterRequestBody } from '~/models/request/user.request'
+import usersService from '~/services/user.services'
 
 export const loginController = async (req: Request, res: Response) => {
   const { email, password } = req.body
   const users = await databaseService.getUsers()
   const loggedUser = users.find((u) => u.email === email && u.password === password)
   if (loggedUser) {
+    const token = usersService.generateAuthToken(loggedUser)
     return res.json({
       message: 'login success',
-      data: loggedUser
+      data: { token, loggedUser }
     })
   } else {
     return res.status(400).json({
-      error: 'login failed'
+      message: 'Login failed'
     })
   }
 }

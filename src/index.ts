@@ -13,10 +13,10 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'], // access-control-allow-headers
   optionSuccessStatus: 200
 }
-app.all('*', (req, res, next) => {
-  // console.log(req)
-  console.log('time', Date.now()), next()
-})
+// app.all('*', (req, res, next) => {
+//   // console.log(req)
+//   console.log('time', Date.now()), next()
+// })
 
 app.use(cors(corsOptions))
 app.use(express.json()) //app handler
