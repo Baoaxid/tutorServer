@@ -7,7 +7,7 @@ import { RegisterRequestBody } from '~/models/request/user.request'
 export const loginController = async (req: Request, res: Response) => {
   const { email, password } = req.body
   const users = await databaseService.getUsers()
-  const loggedUser = users.find((u) => u.email === email && u.passwordHash === password)
+  const loggedUser = users.find((u) => u.email === email && u.password === password)
   if (loggedUser) {
     return res.json({
       message: 'login success',

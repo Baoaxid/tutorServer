@@ -8,9 +8,9 @@ const app = express()
 const port = 3000
 
 const corsOptions = {
-  origin: '*',
+  origin: 'http://localhost:5173',
   credentials: true, // access-control-allow-credentials:true
-  allowedHeaders: ['Content-Type', 'application/json'], // access-control-allow-headers
+  allowedHeaders: ['Content-Type', 'Authorization'], // access-control-allow-headers
   optionSuccessStatus: 200
 }
 app.all('*', (req, res, next) => {
